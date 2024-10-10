@@ -15,8 +15,7 @@
                                 </h5>
                             </div>
                             <div class="col-xl-6 text-end">
-                                <a wire:navigate href="{{ route('posts') }}" class="btn btn-success btn-sm">Back to
-                                    Post</a>
+                                <a wire:navigate href="{{ route('posts') }}" class="btn btn-success btn-sm">Back to Post</a>
                             </div>
                         </div>
                     </div>
@@ -46,10 +45,18 @@
                             @enderror
                         </div>
 
+                        {{-- Post Featured Image --}}
                         <div class="form-group mb-2">
                             <label for="featuredImage">Image <span class="text-danger"> *</span> </label>
 
-                            <input type="file" wire:model="featuredImage" class="form-control" id="featuredImage" >
+                            <input type="file" wire:model="featuredImage" class="form-control" id="featuredImage">
+
+                            {{-- Preview --}}
+                            @if ($featuredImage)
+                                <img src="{{ $featuredImage->temporaryUrl() }}" class="img-fluid mt-1" width="200px"
+                                    height="300px" alt="">
+                            @endif
+
 
                             @error('featuredImage')
                                 <p class="text-danger"> {{ $message }} </p>

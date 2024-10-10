@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\Post;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class PostForm extends Component
 {
@@ -29,6 +31,29 @@ class PostForm extends Component
     public function savePost()
     {
         $this->validate();
+
+        $imagePath = null;
+
+        if ($this->featuredImage ) {
+            $imageName = $this->title . time() . '.' . $this->featuredImage->extension();
+            $imagePath = $this->featuredImage->storeAs('public/uploads', $imageName);
+            $url = Storage::url($imagePath);
+        }
+
+        $postSubmit = Post::create([
+            'title' => $this->title,
+            'content' => $this->content,
+            'featured_image' => $imagePath,
+        ]);
+
+        if ($postSubmit) {
+            session()->flash('success', 'Post was successfully submitted');
+        } else {
+            session()->flash('error', 'Post was not submitted');
+        }
+
+        return $this->redirect('/posts', navigate: true);
+
     }
 
     public function render()
