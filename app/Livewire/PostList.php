@@ -10,6 +10,8 @@ class PostList extends Component
 {
     public $posts;
 
+    public $id;
+
     public function mount()
     {
         $this->posts = Post::all();
@@ -17,7 +19,8 @@ class PostList extends Component
 
     public function render()
     {
-        $this->posts = Post::all();
+
+        $this->id = Post::select('id')->get();
         return view('livewire.post-list');
     }
 
