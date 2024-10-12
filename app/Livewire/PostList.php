@@ -4,24 +4,26 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
-
+use Livewire\WithPagination;
+use PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException;
+use Livewire\WithoutUrlPagination;
 
 class PostList extends Component
 {
-    public $posts;
+    use WithPagination , WithoutUrlPagination;
+
+
 
     public $id;
 
-    public function mount()
-    {
-        $this->posts = Post::all();
-    }
+
 
     public function render()
     {
 
-        $this->id = Post::select('id')->get();
-        return view('livewire.post-list');
+        $posts = Post::paginate(3);
+        return view('livewire.post-list', compact('posts'));
+
     }
 
 

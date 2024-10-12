@@ -5,3 +5,10 @@
 5. Design Schema for post table
 6. Design UI
 7. Display posts in listing
+
+
+
+
+1. Pagination in the post list
+2. Post view
+3. 

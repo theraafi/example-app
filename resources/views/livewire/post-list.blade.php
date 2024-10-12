@@ -41,14 +41,17 @@
             </thead>
 
             <tbody>
+
                 @forelse ($posts as $post)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ Storage::url($post->featured_image) }}" class="img-fluid" width="100px"
-                               height="100px" alt="">
+                            <a wire:navigate href="{{ route('posts.view', $post->id) }}">
+                                <img src="{{ Storage::url($post->featured_image) }}" class="img-fluid" width="100px"
+                                height="100px" alt="">
+                            </a>
                         </td>
-                        <td>{{ $post->title }}</td>
+                        <td> <a wire:navigate href="{{ route('posts.view', $post->id) }}"> {{ $post->title }} </a> </td>
                         <td>{{ $post->Content }}</td>
                         <td>
                             <p><small><strong>Posted: </strong>
@@ -58,16 +61,19 @@
                                     {{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }} </small></p>
                         </td>
                         <td>
-                            <a href="{{ route('posts.edit', $post->id) }}" wire:navigate class="btn btn-success btn-sm"> Edit </a>
+                            <a href="{{ route('posts.edit', $post->id) }}" wire:navigate class="btn btn-success btn-sm">
+                                Edit </a>
 
-                            <button wire:click='deletePost({{ $post->id }})' type="button" class="btn btn-danger btn-sm"> Delete </button>
+                            <button wire:click='deletePost({{ $post->id }})' type="button"
+                                class="btn btn-danger btn-sm"> Delete </button>
                         </td>
                     </tr>
                 @empty
                 @endforelse
             </tbody>
-
         </table>
+        {{ $posts->links() }}
     </div>
+
 
 </div>
