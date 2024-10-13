@@ -8,6 +8,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
+
 class PostForm extends Component
 {
     use WithFileUploads;
@@ -34,6 +35,7 @@ class PostForm extends Component
     public function mount(Post $post)
     {
         $this->isView = request()->routeIs('posts.view');
+
         if ($post->id) {
             $this->post = $post;
             $this->title = $post->title;

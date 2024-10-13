@@ -6,7 +6,7 @@
             <form wire:submit='savePost' action="">
                 @csrf
                 <div class="card">
-
+                    
                     <div class="card-header">
                         <div class="row">
                             <div class="col-xl-6">
@@ -27,7 +27,7 @@
                         <div class="form-group mb-2">
                             <label for="title">Title <span class="text-danger"> *</span> </label>
 
-                            <input type="text" {{ $isView ? 'disabled' : ' ' }} wire:model="title"
+                            <input wire:navigate type="text" {{ $isView ? 'disabled' : '' }} wire:model="title"
                                 class="form-control" id="title" placeholder="Post title">
 
                             @error('title')
@@ -39,7 +39,7 @@
                         <div class="form-group mb-2">
                             <label for="content">Content <span class="text-danger"> *</span> </label>
 
-                            <textarea type="text" {{ $isView ? 'disabled' : ' ' }} wire:model="content" class="form-control" id="content"
+                            <textarea wire:navigate type="text" {{ $isView ? 'disabled' : '' }} wire:model="content" class="form-control" id="content"
                                 placeholder="Post title"> </textarea>
 
                             @error('content')
@@ -58,7 +58,7 @@
 
 
                         {{-- Post Featured Image --}}
-                        @if (!isView)
+                        @if (!$isView)
                             <div class="form-group mb-2">
                                 <label for="featuredImage">Image <span class="text-danger"> *</span> </label>
 
@@ -80,7 +80,7 @@
 
                     </div>
 
-                    @if (!isView)
+                    @if (!$isView)
                         <div class="card-footer">
                             <div class="form-group mb-2">
                                 <button type="submit" class="btn btn-primary">
