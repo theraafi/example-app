@@ -10,5 +10,5 @@
 
 
 1. Pagination in the post list
-2. Post view
+2. Post view functionality
 3. 

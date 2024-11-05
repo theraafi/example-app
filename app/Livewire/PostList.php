@@ -21,7 +21,7 @@ class PostList extends Component
     public function render()
     {
 
-        $posts = Post::paginate(3);
+        $posts = Post::paginate(4);
         return view('livewire.post-list', compact('posts'));
 
     }
