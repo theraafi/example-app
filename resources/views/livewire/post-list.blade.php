@@ -51,7 +51,7 @@
                                 height="100px" alt="">
                             </a>
                         </td>
-                        <td> <a wire:navigate href="{{ route('posts.view', $post->id) }}"> {{ $post->title }} </a> </td>
+                        <td> <a wire:navigate href="{{ route('posts.view', $post->id) }}" class="text-decoration-none text-black"> {{ $post->title }} </a> </td>
                         <td>{{ $post->Content }}</td>
                         <td>
                             <p><small><strong>Posted: </strong>
@@ -70,9 +70,11 @@
                     </tr>
                 @empty
                 @endforelse
+                {{ $posts->links() }}
             </tbody>
+
         </table>
-        {{ $posts->links() }}
+
     </div>
 
 
