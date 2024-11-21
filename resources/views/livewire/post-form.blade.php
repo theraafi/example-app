@@ -6,12 +6,12 @@
             <form wire:submit='savePost' action="">
                 @csrf
                 <div class="card">
-                    
+
                     <div class="card-header">
                         <div class="row">
                             <div class="col-xl-6">
                                 <h5 class="fw-bold">
-                                    {{ $isView ? 'View' : 'Create' }} post
+                                    {{ $isView ? 'View' : ($post ? 'Edit' : 'Create') }} post
                                 </h5>
                             </div>
                             <div class="col-xl-6 text-end">
@@ -84,7 +84,7 @@
                         <div class="card-footer">
                             <div class="form-group mb-2">
                                 <button type="submit" class="btn btn-primary">
-                                    Save
+                                    {{ $post ? 'Update' : 'Save' }}
                                 </button>
                             </div>
                         </div>

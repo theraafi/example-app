@@ -53,13 +53,7 @@ class PostEdit extends Component
     {
         $this->validate();
 
-        try {
-            if (condition) {
-                # code...
-            }
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        
     }
 
     public function render()
